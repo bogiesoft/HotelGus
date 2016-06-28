@@ -1,0 +1,22 @@
+<!DOCTYPE HTML>
+<html>
+
+<p class="text-center">
+	<table style='width:100%'>
+		<tr>
+			<td>Room: <?php echo $roomID ?></td>
+		    <td>Beds: <?php echo $numBeds ?></td>
+		    <td>Price per night: $<?php echo $price ?></td>
+		    <td><form action='?route=booked&action=book' method='post'>
+		    	<input type='submit' value='Book'>
+		    	<input type='hidden' name='roomID' value='<?php echo $roomID ?>'>
+		    	<input type='hidden' name='checkin' value='<?php echo $checkin ?>'>
+		    	<input type='hidden' name='checkout' value='<?php echo $checkout ?>'>
+		    	<input type='hidden' name='price' value='<?php echo $price ?>'> </form>
+		    </td>
+		</tr>
+	</table>
+</p>
+
+
+</html>

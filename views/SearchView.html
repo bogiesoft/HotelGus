@@ -1,0 +1,75 @@
+<!DOCTYPE HTML>
+<html>	
+	  
+	<script>
+		// Calendar views
+		$(document).ready(function() {
+	    	$('#checkindate').datepicker();
+	  	});
+
+		$(document).ready(function() {
+	    	$('#checkoutdate').datepicker();
+	  	});
+
+		function validateForm() {
+			var numBeds = document.forms['searchForm']['numBeds'].value;
+			if (numBeds == '') {
+				alert("Select number of beds.");
+				return false;
+			}
+
+			if (!document.forms['searchForm']['checkin'].value || !document.forms['searchForm']['checkout'].value) {
+				alert("Enter dates.");
+				return false;
+			}
+
+			$lastname = document.forms['searchForm']['lastname'].value;
+			if (!$lastname) {
+				alert("Enter a last name.");
+				return false;
+			}
+			else if ($lastname.length > 20) {
+				alert("Last name is too long.");
+				return false;
+			}
+
+			var checkIn = new Date(document.forms['searchForm']['checkin'].value);
+			var checkOut = new Date(document.forms['searchForm']['checkout'].value);
+			var today = new Date();
+			if (checkIn.getTime() > checkOut.getTime()) {
+				alert("Check-in date must be before check-out.");
+				return false;
+			}
+			else if (checkIn.getTime() == checkOut.getTime()) {
+				alert("Check-in and check-out must be different dates.");
+				return false;
+			}
+			else if (checkIn.getTime() < today.getTime()) {
+				alert("That date already passed!");
+				return false;
+			}
+		}
+	</script>
+	
+	<form name='searchForm' action='?route=results' method='post' onsubmit='return validateForm()'>
+		Number of beds:
+		<select name='numBeds'>
+			<option value=''>Select</option>
+			<option value=1>1</option>
+			<option value=2>2</option>
+			<option value=3>3</option>
+		</select>
+
+		Check-in:
+		<input id='checkindate' name='checkin'>
+
+		Check-out:
+		<input id='checkoutdate' name='checkout'>
+
+		Last Name:
+		<input type='text' name='lastname'>
+
+		<input type='submit' name='Search' value='Search'>
+	</form>
+
+</html>

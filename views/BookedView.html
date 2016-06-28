@@ -1,0 +1,11 @@
+<!DOCTYPE HTML>
+<html>
+
+	<p>You booked room <?php echo $_POST['roomID']." from ".$checkin." to ".$checkout." for $".$totalPrice." under name ".$lastname."."; ?></p>
+	<p>Please pay at hotel.</p>
+
+	<p><form action='?route=search' method='post'>
+	    <input type='submit' value='Home'> </form>
+	</p>
+
+</html>
