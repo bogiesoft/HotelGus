@@ -1,35 +1,63 @@
 <!DOCTYPE HTML>
-<html>	
-	  
+<html>
+	
+	<div class='margin'>
+	    <form class='form-inline' name='searchForm' action='?route=results' method='post'>
+
+	    	<div class='form-group dropdown'>
+				<label for="numBeds">Number of beds</label>
+		      	<select class="form-control" id="numBeds" name='numBeds'>
+			        <option value=1>1</option>
+			        <option value=2>2</option>
+			        <option value=3>3</option>
+		      	</select>
+			</div>
+
+	        <div class='form-group'>
+	            <label for='checkindate' class='control-label col-xs-2'>Check-in</label>
+	            <div class='col-xs-10'>
+	                <input class='form-control' name='checkin' id='checkindate' placeholder=''>
+	            </div>
+	        </div>
+
+	        <div class='form-group'>
+	            <label for='checkoutdate' class='control-label col-xs-2'>Check-out</label>
+	            <div class='col-xs-10'>
+	                <input class='form-control' name='checkout' id='checkoutdate' placeholder=''>
+	            </div>
+	        </div>
+
+	        <div class='form-group'>
+	            <label for='inputLastname' class='control-label col-xs-2'>Last name</label>
+	            <div class='col-xs-10'>
+	                <input class='form-control' name='lastname' type='text' id='inputLastname' placeholder='Last name'>
+	            </div>
+	        </div>
+
+	        <div class='form-group'>
+	            <div class='col-xs-offset-2 col-xs-10'>
+	                <button type='submit' class='btn btn-primary'>Search</button>
+	            </div>
+	        </div>
+
+	    </form>
+	</div>
+
+
+
 	<script>
+
 		// Calendar views
 		$(document).ready(function() {
 	    	$('#checkindate').datepicker();
-	  	});
-
-		$(document).ready(function() {
 	    	$('#checkoutdate').datepicker();
 	  	});
 
-		function validateForm() {
-			var numBeds = document.forms['searchForm']['numBeds'].value;
-			if (numBeds == '') {
-				alert("Select number of beds.");
-				return false;
-			}
-
+		// Validate form on submission
+	  	$(document).on('click', '[type="submit"]', function() {	
+	  		// Validate dates
 			if (!document.forms['searchForm']['checkin'].value || !document.forms['searchForm']['checkout'].value) {
 				alert("Enter dates.");
-				return false;
-			}
-
-			$lastname = document.forms['searchForm']['lastname'].value;
-			if (!$lastname) {
-				alert("Enter a last name.");
-				return false;
-			}
-			else if ($lastname.length > 20) {
-				alert("Last name is too long.");
 				return false;
 			}
 
@@ -48,28 +76,20 @@
 				alert("That date already passed!");
 				return false;
 			}
-		}
+
+			// Validate last name
+			$lastname = document.forms['searchForm']['lastname'].value;
+			if (!$lastname) {
+				alert("Enter a last name.");
+				return false;
+			}
+			else if ($lastname.length > 20) {
+				alert("Last name is too long.");
+				return false;
+			}
+		});
+
 	</script>
-	
-	<form name='searchForm' action='?route=results' method='post' onsubmit='return validateForm()'>
-		Number of beds:
-		<select name='numBeds'>
-			<option value=''>Select</option>
-			<option value=1>1</option>
-			<option value=2>2</option>
-			<option value=3>3</option>
-		</select>
 
-		Check-in:
-		<input id='checkindate' name='checkin'>
-
-		Check-out:
-		<input id='checkoutdate' name='checkout'>
-
-		Last Name:
-		<input type='text' name='lastname'>
-
-		<input type='submit' name='Search' value='Search'>
-	</form>
 
 </html>
