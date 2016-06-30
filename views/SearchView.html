@@ -1,95 +1,96 @@
 <!DOCTYPE HTML>
 <html>
-	
-	<div class='margin'>
-	    <form class='form-inline' name='searchForm' action='?route=results' method='post' role='form'>
+	<body>
 
-	    	<div class='form-group dropdown'>
-				<label for="numBeds">Number of beds</label>
-		      	<select class="form-control" id="numBeds" name='numBeds'>
-			        <option value=1>1</option>
-			        <option value=2>2</option>
-			        <option value=3>3</option>
-		      	</select>
-			</div>
+		<div class='margin'>
+		    <form class='form-inline' name='searchForm' action='?route=results' method='post' role='form'>
 
-	        <div class='form-group'>
-	            <label for='checkindate' class='control-label col-xs-2'>Check-in</label>
-	            <div class='col-xs-10'>
-	                <input class='form-control' name='checkin' id='checkindate' placeholder=''>
-	            </div>
-	        </div>
+		    	<div class='form-group dropdown'>
+					<label for="numBeds">Number of beds</label>
+			      	<select class="form-control" id="numBeds" name='numBeds'>
+				        <option value=1>1</option>
+				        <option value=2>2</option>
+				        <option value=3>3</option>
+			      	</select>
+				</div>
 
-	        <div class='form-group'>
-	            <label for='checkoutdate' class='control-label col-xs-2'>Check-out</label>
-	            <div class='col-xs-10'>
-	                <input class='form-control' name='checkout' id='checkoutdate' placeholder=''>
-	            </div>
-	        </div>
+		        <div class='form-group'>
+		            <label for='checkindate' class='control-label col-xs-2'>Check-in</label>
+		            <div class='col-xs-10'>
+		                <input class='form-control' name='checkin' id='checkindate' placeholder=''>
+		            </div>
+		        </div>
 
-	        <div class='form-group'>
-	            <label for='inputLastname' class='control-label col-xs-2'>Last name</label>
-	            <div class='col-xs-10'>
-	                <input class='form-control' name='lastname' type='text' id='inputLastname' placeholder='Last name'>
-	            </div>
-	        </div>
+		        <div class='form-group'>
+		            <label for='checkoutdate' class='control-label col-xs-2'>Check-out</label>
+		            <div class='col-xs-10'>
+		                <input class='form-control' name='checkout' id='checkoutdate' placeholder=''>
+		            </div>
+		        </div>
 
-	        <div class='form-group'>
-	            <div class='col-xs-offset-2 col-xs-10'>
-	                <button type='submit' class='btn btn-primary'>Search</button>
-	            </div>
-	        </div>
+		        <div class='form-group'>
+		            <label for='inputLastname' class='control-label col-xs-2'>Last name</label>
+		            <div class='col-xs-10'>
+		                <input class='form-control' name='lastname' type='text' id='inputLastname' placeholder='Last name'>
+		            </div>
+		        </div>
 
-	    </form>
-	</div>
+		        <div class='form-group'>
+		            <div class='col-xs-offset-2 col-xs-10'>
+		                <button type='submit' class='btn btn-primary'>Search</button>
+		            </div>
+		        </div>
 
-
-
-	<script>
-
-		// Calendar views
-		$(document).ready(function() {
-	    	$('#checkindate').datepicker();
-	    	$('#checkoutdate').datepicker();
-	  	});
-
-		// Validate form on submission
-	  	$(document).on('click', '[type="submit"]', function() {	
-	  		// Validate dates
-			if (!document.forms['searchForm']['checkin'].value || !document.forms['searchForm']['checkout'].value) {
-				alert("Enter dates.");
-				return false;
-			}
-
-			var checkIn = new Date(document.forms['searchForm']['checkin'].value);
-			var checkOut = new Date(document.forms['searchForm']['checkout'].value);
-			var today = new Date();
-			if (checkIn.getTime() > checkOut.getTime()) {
-				alert("Check-in date must be before check-out.");
-				return false;
-			}
-			else if (checkIn.getTime() == checkOut.getTime()) {
-				alert("Check-in and check-out must be different dates.");
-				return false;
-			}
-			else if (checkIn.getTime() < today.getTime()) {
-				alert("That date already passed!");
-				return false;
-			}
-
-			// Validate last name
-			$lastname = document.forms['searchForm']['lastname'].value;
-			if (!$lastname) {
-				alert("Enter a last name.");
-				return false;
-			}
-			else if ($lastname.length > 20) {
-				alert("Last name is too long.");
-				return false;
-			}
-		});
-
-	</script>
+		    </form>
+		</div>
 
 
+
+		<script>
+
+			// Calendar views
+			$(document).ready(function() {
+		    	$('#checkindate').datepicker();
+		    	$('#checkoutdate').datepicker();
+		  	});
+
+			// Validate form on submission
+		  	$(document).on('click', '[type="submit"]', function() {	
+		  		// Validate dates
+				if (!document.forms['searchForm']['checkin'].value || !document.forms['searchForm']['checkout'].value) {
+					alert("Enter dates.");
+					return false;
+				}
+
+				var checkIn = new Date(document.forms['searchForm']['checkin'].value);
+				var checkOut = new Date(document.forms['searchForm']['checkout'].value);
+				var today = new Date();
+				if (checkIn.getTime() > checkOut.getTime()) {
+					alert("Check-in date must be before check-out.");
+					return false;
+				}
+				else if (checkIn.getTime() == checkOut.getTime()) {
+					alert("Check-in and check-out must be different dates.");
+					return false;
+				}
+				else if (checkIn.getTime() < today.getTime()) {
+					alert("That date already passed!");
+					return false;
+				}
+
+				// Validate last name
+				$lastname = document.forms['searchForm']['lastname'].value;
+				if (!$lastname) {
+					alert("Enter a last name.");
+					return false;
+				}
+				else if ($lastname.length > 20) {
+					alert("Last name is too long.");
+					return false;
+				}
+			});
+
+		</script>
+
+	</body>
 </html>

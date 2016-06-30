@@ -1,59 +1,61 @@
 <!DOCTYPE HTML>
 <html>
+	<body>
 
-	<?php
-	if (!empty($availableRooms)):	?>
-		<div class='margin'>
-			<table class='table table-striped'>
-				<thead>
-		            <tr>
-		                <th>Room ID</th>
-		                <th>Beds</th>
-		                <th>Price per night</th>
-		                <th></th>
-		            </tr>
-		        </thead>
-		        <tbody>
-		<!-- Iterate through each available room and display info -->
 		<?php
-		foreach ($availableRooms as $room):
-			$roomID = $room->getID();
-			$price = $room->getPrice();	?>
-		            <tr>
-		                <td><?php echo $roomID ?></td>
-		                <td><?php echo $numBeds ?></td>
-		                <td><?php echo $price ?></td>
-		                <td><form class='form-inline' action='?route=booked&action=book' method='post' role='form'>
-		                		<div class='form-group'>
-						            <div class='col-xs-offset-2 col-xs-10'>
-						                <button type='submit' class='btn btn-primary'>Book</button>
-						                <input type='hidden' name='roomID' value='<?php echo $roomID ?>'>
-								    	<input type='hidden' name='checkin' value='<?php echo $checkin ?>'>
-								    	<input type='hidden' name='checkout' value='<?php echo $checkout ?>'>
-								    	<input type='hidden' name='price' value='<?php echo $price ?>'>
-						            </div>
-						        </div>
-						    </form>
-		                </td>
-		            </tr>
-		<?php endforeach ?>
-		        </tbody>
-		    </table>
-		
-	<?php else: ?>
-			<h3 class='text-center'>No available <?php echo $numBeds ?> bed rooms from <?php echo $checkin ?> to <?php echo $checkout ?>.</h3>
-	<?php endif ?>
-	</div>
+		if (!empty($availableRooms)):	?>
+			<div class='margin'>
+				<table class='table table-striped'>
+					<thead>
+			            <tr>
+			                <th>Room ID</th>
+			                <th>Beds</th>
+			                <th>Price per night</th>
+			                <th></th>
+			            </tr>
+			        </thead>
+			        <tbody>
+			<!-- Iterate through each available room and display info -->
+			<?php
+			foreach ($availableRooms as $room):
+				$roomID = $room->getID();
+				$price = $room->getPrice();	?>
+			            <tr>
+			                <td><?php echo $roomID ?></td>
+			                <td><?php echo $numBeds ?></td>
+			                <td><?php echo $price ?></td>
+			                <td><form class='form-inline' action='?route=booked&action=book' method='post' role='form'>
+			                		<div class='form-group'>
+							            <div class='col-xs-offset-2 col-xs-10'>
+							                <button type='submit' class='btn btn-primary'>Book</button>
+							                <input type='hidden' name='roomID' value='<?php echo $roomID ?>'>
+									    	<input type='hidden' name='checkin' value='<?php echo $checkin ?>'>
+									    	<input type='hidden' name='checkout' value='<?php echo $checkout ?>'>
+									    	<input type='hidden' name='price' value='<?php echo $price ?>'>
+							            </div>
+							        </div>
+							    </form>
+			                </td>
+			            </tr>
+			<?php endforeach ?>
+			        </tbody>
+			    </table>
+			
+		<?php else: ?>
+				<h3 class='text-center'>No available <?php echo $numBeds ?> bed rooms from <?php echo $checkin ?> to <?php echo $checkout ?>.</h3>
+		<?php endif ?>
+		</div>
 
-	<!-- Home button -->
-		<form class='' action='?route=search' method='post' role='form'>
-		    <div class='form-group'>
-			    <div class='text-center'>
-		            <button type='submit' class='btn btn-primary'>Home</button>
-		        </div>
-		    </div>
-	    </form>
+		<!-- Home button -->
+			<form class='' action='?route=search' method='post' role='form'>
+			    <div class='form-group'>
+				    <div class='text-center'>
+			            <button type='submit' class='btn btn-primary'>Home</button>
+			        </div>
+			    </div>
+		    </form>
 
-	   	</div>
+		   	</div>
 
+   	</body>
 </html>
