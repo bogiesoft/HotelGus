@@ -17,21 +17,8 @@
 			$numBeds = $_POST['numBeds'];
 
 			$availableRooms = $this->model->getAvailableRooms($numBeds, $checkin, $checkout);
-			if (!empty($availableRooms)) {
-				foreach ($availableRooms as $room) {
-					$roomID = $room->getID();
-					$price = $room->getPrice();
-
-					require 'views/RoomView.html';
-				}
-			}
-			else {
-				echo "No available ".$numBeds." bed rooms between ".$checkin." and ".$checkout.".";
-			}
-
-			echo "<p><form action='?route=search' method='post'>
-	    			<input type='submit' value='Home'> </form>
-				</p>";
+			
+			require_once 'views/ResultPageView.html';
 		}
 
 	}
